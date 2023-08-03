@@ -147,7 +147,12 @@ const ProfilePage = () => {
         <Button onClick={handleDeleteAccount} sx={{color: '#E91E63'}}>CONFIRM</Button>
       </DialogActions>
     </Dialog>
-    <Dialog onClose={handleClose} open={openUpdate} sx={{minWidth: '568px'}}>
+    <Dialog onClose={handleClose} open={openUpdate}  PaperProps={{
+      sx: {
+        width: "100%",
+        minWidth: "720px!important",
+      },
+    }}>
       <DialogTitle>{"  Update Profile"}</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
       <DialogContent>

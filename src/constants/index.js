@@ -1,7 +1,9 @@
 
 export const typeLocal = {
   ACCOUNTS: 'ACCOUNTS',
-  ACCOUNT_LOGIN: 'ACCOUNT_LOGIN'
+  ACCOUNT_LOGIN: 'ACCOUNT_LOGIN',
+  MOVIE_LIST: 'MOVIE_LIST',
+  LIST_COMMENT: 'LIST_COMMENT'
 }
 
 export const messageAuth = {
