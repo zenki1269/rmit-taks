@@ -83,14 +83,34 @@ const ProfilePage = () => {
   }, [profile])
 
   const handleDeleteAccount = () => {
+    const listComments = JSON.parse(localStorage.getItem(typeLocal.LIST_COMMENT)) || {}
+    if(!listComments || isEmptyObject(listComments)) {
+      console.log("Handle")
+    }
+    else {
+      for(let key in listComments) {
+        let total = 0
+        const comments = listComments[key].comments
+        console.log({comments})
+        const newComments = comments.filter((comment) => comment.user._id !== profile._id)
+        console.log({newComments})
+        newComments.forEach((comment) => total +=comment.rate)
+        listComments[key].comments = newComments
+        listComments[key].total = total
+      }
+      localStorage.setItem(typeLocal.LIST_COMMENT, JSON.stringify(listComments))
+    }
     const listAccount = JSON.parse(localStorage.getItem(typeLocal.ACCOUNTS))
-    const index = listAccount.find((item) => item._id === profile._id)
+    console.log(profile)
+    const index = listAccount.findIndex((item) => item._id === profile._id)
     listAccount.splice(index, 1)
     localStorage.setItem(typeLocal.ACCOUNTS, JSON.stringify(listAccount))
     localStorage.removeItem(typeLocal.ACCOUNT_LOGIN)
     toast.success("Bạn đã xóa tài khoản thành công")
+
     navigate('/login')
   }
+
   if(!profile || isEmptyObject(profile)) return
   return <Box>
     <TheSidebar/>
